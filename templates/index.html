@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    h2 { color: red; }
+  </style>
+</head>
+
+
+<body>
+<h1>Add invoices</h1>
+<form method="POST" enctype="multipart/form-data" action="/upload_invoice">
+  <input type="file" name="file_inv[]" multiple="">
+  <input type="submit" value="add to excel">
+</form>
+
+<a href="/download_inv/invoice.xlsx" target="blank"><button class='btn btn-default'>Download Invoice!</button></a>
+
+
+<h1>Add Acknowledgements</h1>
+<form method="POST" enctype="multipart/form-data" action="/upload_acknowledgement">
+  <input type="file" name="file_ack[]" multiple="">
+  <input type="submit" value="add to excel">
+</form>
+
+<a href="/download_ack/acknowledgement.xlsx" target="blank"><button class='btn btn-default'>Download Acknowledgements!</button></a>
+<br><br>
+
+<h1>upload new excel file for invoices</h1>
+
+<form method="POST" enctype="multipart/form-data" action="/upload_excel_inv">
+  <input type="file" name="excel">
+  <input type="submit" value="upload new excel">
+</form>
+<br>
+<h1>upload new excel file for acknowledgements</h1>
+<form method="POST" enctype="multipart/form-data" action="/upload_excel_ack">
+  <input type="file" name="excel">
+  <input type="submit" value="upload new excel">
+</form>
+
+<br>
+
+<h2>{{ data }}</h2>
+
+<h3>Usage:</h3>
+<p><b>
+1) Upload only '.pdf' files ('.PDF' is OKAY) OR '.xlsx' format files  <br>
+2) If you Find that the downloaded excel sheet has not been updated
+    please change browser (recommended is firefox)</b>
+</p>
+</body>
+</html>
