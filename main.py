@@ -3,6 +3,16 @@ import os
 import openpyxl
 
 
+work_dir = os.getcwd()
+list_dir = os.listdir(work_dir)
+
+def init():
+    if 'pdf' not in list_dir:
+        os.mkdir(work_dir + '/pdf')
+        os.mkdir(work_dir + '/pdf/' + 'uploaded_pdf_ack')
+        os.mkdir(work_dir + '/pdf/' + 'uploaded_pdf_invoice')
+
+
 date_dict = {"January": "01",
              "February": "02",
              "March": "03",
@@ -16,7 +26,7 @@ date_dict = {"January": "01",
              "November": "11",
              "December": "12"}
 
-work_dir = os.getcwd()
+
 pdf_dir = work_dir + '/pdf'
 
 
@@ -24,6 +34,7 @@ def make_log(log):
     log_str = str(log)
     with open('log.txt', 'a') as f:
         f.write(log_str)
+
 
 def remove_file(filename):
     try:
@@ -194,6 +205,3 @@ def add_ack_toexcel(filename):
         return to_return
 
 
-#get_bill_details(pdf[0])
-#with open('output.txt', 'w') as f:
-    #f.write(pdf[0])

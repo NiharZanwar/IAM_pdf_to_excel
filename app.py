@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, render_template, send_from_directory
-from main import work_dir, pdf_dir, add_to_excel, add_ack_toexcel, make_log
+from main import work_dir, pdf_dir, add_to_excel, add_ack_toexcel, make_log, init
+
 
 UPLOAD_FOLDER = pdf_dir
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -9,6 +10,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 redirect = '<a href="/">go back</a>'
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -88,10 +90,10 @@ def upload_excel_inv():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'] + '/..', file.filename))
         return "upload successful" + redirect
 
+
 @app.route('/upload_excel_ack', methods=['POST'])
 def upload_excel_ack():
     if request.method == 'POST':
-
 
         file = request.files['excel']
         try:
@@ -106,5 +108,7 @@ def upload_excel_ack():
 
 
 if __name__ == '__main__':
+    init()
     app.secret_key = 'some secret key'
     app.run(host='0.0.0.0', port=5000, debug=True)
+
